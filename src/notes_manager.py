@@ -21,7 +21,7 @@ class NotesManager:
                     updated TEXT
                 )
             ''')
-    def add_note(self, title, content, category="Ogolne", tags=""):
+    def add_note(self, title, content, category="Ogólne", tags=""):
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with sqlite3.connect(self.db_path) as conn:
             conn.execute('''
@@ -32,3 +32,14 @@ class NotesManager:
     def get_all_notes(self):
         with sqlite3.connect(self.db_path) as conn:
             return conn.execute("SELECT * FROM notes").fetchall()        
+    
+    def search_notes(self, query):
+        with sqlite3.connect(self.db_path) as conn:
+            return conn.execute(
+                "SELECT * FROM notes WHERE title LIKE ? OR content LIKE ?",
+                (f"%{query}%", f"%{query}%")
+            ).fetchall()
+
+    def delete_note(self, note_id):
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute("DELETE FROM notes WHERE id = ?", (note_id,))
