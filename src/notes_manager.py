@@ -21,3 +21,14 @@ class NotesManager:
                     updated TEXT
                 )
             ''')
+    def add_note(self, title, content, category="Ogólne", tags=""):
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        with sqlite3.connect(self.db_path) as conn:
+            conn.execute('''
+                INSERT INTO notes (title, content, category, tags, created, updated)
+                VALUES (?, ?, ?, ?, ?, ?)
+            ''', (title, content, category, tags, now, now))
+
+    def get_all_notes(self):
+        with sqlite3.connect(self.db_path) as conn:
+            return conn.execute("SELECT * FROM notes").fetchall()        
