@@ -21,7 +21,7 @@ class NotesManager:
                     updated TEXT
                 )
             ''')
-    def add_note(self, title, content, category="Ogólne", tags=""):
+    def add_note(self, title, content, category="Ogolne", tags=""):
         now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         with sqlite3.connect(self.db_path) as conn:
             conn.execute('''
