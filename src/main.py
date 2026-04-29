@@ -45,7 +45,7 @@ def search_notes(self, query):
             "SELECT * FROM notes WHERE title LIKE ? OR content LIKE ?",
             (f"%{query}%", f"%{query}%")
         ).fetchall()
-
+wdqdwq
 def delete_note(self, note_id):
     with sqlite3.connect(self.db_path) as conn:
         conn.execute("DELETE FROM notes WHERE id = ?", (note_id,))
