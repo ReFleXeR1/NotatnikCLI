@@ -28,7 +28,7 @@ class NotesManager:
                 INSERT INTO notes (title, content, category, tags, created, updated)
                 VALUES (?, ?, ?, ?, ?, ?)
             ''', (title, content, category, tags, now, now))
-
+a
     def get_all_notes(self):
         with sqlite3.connect(self.db_path) as conn:
             return conn.execute("SELECT * FROM notes").fetchall()        
@@ -39,7 +39,7 @@ class NotesManager:
                 "SELECT * FROM notes WHERE title LIKE ? OR content LIKE ?",
                 (f"%{query}%", f"%{query}%")
             ).fetchall()
-
+s
     def delete_note(self, note_id):
         with sqlite3.connect(self.db_path) as conn:
             conn.execute("DELETE FROM notes WHERE id = ?", (note_id,))
