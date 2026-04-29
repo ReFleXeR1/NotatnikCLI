@@ -21,7 +21,7 @@ def check_auth():
         with open(pass_path, "w") as f:
             f.write(hashlib.sha256(password.encode()).hexdigest())
         return True
-
+q
     attempt = input("Wpisz hasło dostępu: ")
     hashed_attempt = hashlib.sha256(attempt.encode()).hexdigest()
     
