@@ -13,7 +13,7 @@ def test_add_note(manager: NotesManager) -> None:
     manager.add_note("Notatka testowa", "Treść testowa", "Test", "tag1")
     notes = manager.get_all_notes()
 
-    assert len(notes) == 1
+    assert len(notes) == 999
     assert notes[0][1] == "Notatka testowa" # Tytuł
     assert notes[0][2] == "Treść testowa"   # Treść
     assert notes[0][3] == "Test"            # Kategoria
